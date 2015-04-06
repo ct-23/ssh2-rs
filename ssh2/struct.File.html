@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `File` struct in crate `ssh2`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, File">
+
+    <title>ssh2::File - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>ssh2</a></p><script>window.sidebarCurrent = {name: 'File', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>ssh2</a>::<wbr><a class='struct' href=''>File</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-5384' href='../src/ssh2/sftp.rs.html#26-29'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct File&lt;'sftp&gt; {
+    // some fields omitted
+}</pre><div class='docblock'><p>A file handle to an SFTP connection.</p>
+
+<p>Files behave similarly to <code>std::old_io::File</code> in that they are readable and
+writable and support operations like stat and seek.</p>
+
+<p>Files are created through <code>open</code>, <code>create</code>, and <code>open_mode</code> on an instance
+of <code>Sftp</code>.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;'sftp&gt; <a class='struct' href='../ssh2/struct.File.html' title='ssh2::File'>File</a>&lt;'sftp&gt;</code></h3><div class='impl-items'><h4 id='method.setstat' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.setstat' class='fnname'>setstat</a>(&amp;mut self, stat: <a class='struct' href='../ssh2/struct.FileStat.html' title='ssh2::FileStat'>FileStat</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../ssh2/struct.Error.html' title='ssh2::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>Set the metadata for this handle.</p>
+</div><h4 id='method.stat' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.stat' class='fnname'>stat</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../ssh2/struct.FileStat.html' title='ssh2::FileStat'>FileStat</a>, <a class='struct' href='../ssh2/struct.Error.html' title='ssh2::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>Get the metadata for this handle.</p>
+</div><h4 id='method.statvfs' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.statvfs' class='fnname'>statvfs</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../libssh2_sys/struct.LIBSSH2_SFTP_STATVFS.html' title='libssh2_sys::LIBSSH2_SFTP_STATVFS'>LIBSSH2_SFTP_STATVFS</a>, <a class='struct' href='../ssh2/struct.Error.html' title='ssh2::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.readdir' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.readdir' class='fnname'>readdir</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(<a class='struct' href='http://doc.rust-lang.org/nightly/std/path/struct.PathBuf.html' title='std::path::PathBuf'>PathBuf</a>, <a class='struct' href='../ssh2/struct.FileStat.html' title='ssh2::FileStat'>FileStat</a>)</a>, <a class='struct' href='../ssh2/struct.Error.html' title='ssh2::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>Reads a block of data from a handle and returns file entry information
+for the next entry, if any.</p>
+
+<p>Note that this provides raw access to the <code>readdir</code> function from
+libssh2. This will return an error when there are no more files to
+read, and files such as <code>.</code> and <code>..</code> will be included in the return
+values.</p>
+
+<p>Also note that the return paths will not be absolute paths, they are
+the filenames of the files in this directory.</p>
+</div><h4 id='method.fsync' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.fsync' class='fnname'>fsync</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../ssh2/struct.Error.html' title='ssh2::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>This function causes the remote server to synchronize the file data and
+metadata to disk (like fsync(2)).</p>
+
+<p>For this to work requires <a href="mailto:fsync@openssh.com">fsync@openssh.com</a> support on the server.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'sftp&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Read.html' title='std::io::Read'>Read</a> for <a class='struct' href='../ssh2/struct.File.html' title='ssh2::File'>File</a>&lt;'sftp&gt;</code></h3><div class='impl-items'><h4 id='method.read' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.read' class='fnname'>read</a>(&amp;mut self, buf: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;mut [</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt;</code></h4>
+<h4 id='method.read_to_end' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.read_to_end' class='fnname'>read_to_end</a>(&amp;mut self, buf: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.read_to_string' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.read_to_string' class='fnname'>read_to_string</a>(&amp;mut self, buf: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.by_ref' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.by_ref' class='fnname'>by_ref</a>(&amp;mut self) -&gt; &amp;mut Self</code></h4>
+<h4 id='method.bytes' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.bytes' class='fnname'>bytes</a>(self) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/std/io/struct.Bytes.html' title='std::io::Bytes'>Bytes</a>&lt;Self&gt;</code></h4>
+<h4 id='method.chars' class='tymethod'><a class='stability Unstable' title='Unstable: the semantics of a partial read/write of where errors happen is currently unclear and may change'></a><code>fn <a href='#tymethod.chars' class='fnname'>chars</a>(self) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/std/io/struct.Chars.html' title='std::io::Chars'>Chars</a>&lt;Self&gt;</code></h4>
+<h4 id='method.chain' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.chain' class='fnname'>chain</a>&lt;R&gt;(self, next: R) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/std/io/struct.Chain.html' title='std::io::Chain'>Chain</a>&lt;Self, R&gt; <span class='where'>where R: <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Read.html' title='std::io::Read'>Read</a></span></code></h4>
+<h4 id='method.take' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.take' class='fnname'>take</a>(self, limit: <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/std/io/struct.Take.html' title='std::io::Take'>Take</a>&lt;Self&gt;</code></h4>
+<h4 id='method.tee' class='tymethod'><a class='stability Unstable' title='Unstable: the semantics of a partial read/write of where errors happen is currently unclear and may change'></a><code>fn <a href='#tymethod.tee' class='fnname'>tee</a>&lt;W&gt;(self, out: W) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/std/io/struct.Tee.html' title='std::io::Tee'>Tee</a>&lt;Self, W&gt; <span class='where'>where W: <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a></span></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'sftp&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a> for <a class='struct' href='../ssh2/struct.File.html' title='ssh2::File'>File</a>&lt;'sftp&gt;</code></h3><div class='impl-items'><h4 id='method.write' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.write' class='fnname'>write</a>(&amp;mut self, buf: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt;</code></h4>
+<h4 id='method.flush' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.flush' class='fnname'>flush</a>(&amp;mut self) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h4>
+<h4 id='method.write_all' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.write_all' class='fnname'>write_all</a>(&amp;mut self, buf: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.write_fmt' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.write_fmt' class='fnname'>write_fmt</a>(&amp;mut self, fmt: <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Arguments.html' title='core::fmt::Arguments'>Arguments</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/std/io/error/struct.Error.html' title='std::io::error::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.by_ref' class='tymethod'><a class='stability Stable' title='Stable'></a><code>fn <a href='#tymethod.by_ref' class='fnname'>by_ref</a>(&amp;mut self) -&gt; &amp;mut Self</code></h4>
+<h4 id='method.broadcast' class='tymethod'><a class='stability Unstable' title='Unstable: the semantics of a partial read/write of where errors happen is currently unclear and may change'></a><code>fn <a href='#tymethod.broadcast' class='fnname'>broadcast</a>&lt;W&gt;(self, other: W) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/std/io/struct.Broadcast.html' title='std::io::Broadcast'>Broadcast</a>&lt;Self, W&gt; <span class='where'>where W: <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a></span></code></h4>
+</div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'sftp&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Seek.html' title='std::io::Seek'>Seek</a> for <a class='struct' href='../ssh2/struct.File.html' title='ssh2::File'>File</a>&lt;'sftp&gt;</code></h3><div class='impl-items'><h4 id='method.seek' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.seek' class='fnname'>seek</a>(&amp;mut self, how: <a class='enum' href='http://doc.rust-lang.org/nightly/std/io/enum.SeekFrom.html' title='std::io::SeekFrom'>SeekFrom</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/std/io/error/type.Result.html' title='std::io::error::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>&gt;</code></h4>
+<div class='docblock'><p>Move the file handle&#39;s internal pointer to an arbitrary location.</p>
+
+<p>libssh2 implements file pointers as a localized concept to make file
+access appear more POSIX like. No packets are exchanged with the server
+during a seek operation. The localized file pointer is simply used as a
+convenience offset during read/write operations.</p>
+
+<p>You MUST NOT seek during writing or reading a file with SFTP, as the
+internals use outstanding packets and changing the &quot;file position&quot;
+during transit will results in badness.</p>
+</div></div><h3 class='impl'><a class='stability Stable' title='Stable'></a><code>impl&lt;'sftp&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../ssh2/struct.File.html' title='ssh2::File'>File</a>&lt;'sftp&gt;</code></h3><div class='impl-items'><h4 id='method.drop' class='method'><a class='stability Stable' title='Stable'></a><code>fn <a href='#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "ssh2";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>
